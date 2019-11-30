@@ -38,6 +38,31 @@ app.get('/entities', (req, res) => {
 	);
 })
 
+app.get('/facets', (req, res) => {
+	let query = access.buildQuery({
+	  qtext: req.query.qtext,
+	  collection: req.query.collection,
+	  facet: req.query.facet,
+	  category: 'none'
+	});
+	db.documents.query(query).result(response => {
+	    res.send(response);
+	  }, error => {
+	    console.log(JSON.stringify(error, null, 2));
+	  }
+	);
+})
+
+
+app.get('/documents', (req, res) => {
+	db.documents.read(req.query.uri).result(response => {
+	    res.send(response);
+	  }, error => {
+	    console.log(JSON.stringify(error, null, 2));
+	  }
+	);
+})
+
 app.listen(
 	config.server.port, 
 	() => console.log(`Server listening on port: ${config.server.port}`)
