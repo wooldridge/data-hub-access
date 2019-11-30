@@ -30,7 +30,7 @@ describe("built query", function() {
   it("facet", function() {
     let opts = { facet: 'baz' };
     let query = access.buildQuery(opts);
-    assert.isOk(query.calculateClause);
+    assert.isOk(query.calculateClause.constraint);
   });
 
   it("page start", function() {
@@ -43,6 +43,12 @@ describe("built query", function() {
     let opts = { pageLength: num };
     let query = access.buildQuery(opts);
     assert.equal(query.sliceClause['page-length'], num);
+  });
+
+  it("category", function() {
+    let opts = { category: 'boo' };
+    let query = access.buildQuery(opts);
+    assert.isOk(query.withOptionsClause.categories);
   });
 
 });

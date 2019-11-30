@@ -15,7 +15,8 @@ app.get('/search', (req, res) => {
 	  collection: req.query.collection,
 	  facet: req.query.facet,
 	  pageStart: req.query.pageStart,
-	  pageLength: req.query.pageLength
+	  pageLength: req.query.pageLength,
+	  category: req.query.category
 	});
 	db.documents.query(query).result(response => {
 	    res.send(response);
