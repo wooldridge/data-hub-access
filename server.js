@@ -11,8 +11,9 @@ const db = marklogic.createDatabaseClient(config.client);
 
 app.get('/search', (req, res) => {
 	let query = access.buildQuery({
-	  collection: req.query.collection,
 	  qtext: req.query.qtext,
+	  collection: req.query.collection,
+	  facet: req.query.facet,
 	  pageStart: req.query.pageStart,
 	  pageLength: req.query.pageLength
 	});

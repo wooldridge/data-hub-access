@@ -15,18 +15,22 @@ describe("built query", function() {
     assert.equal(query.queryFormat, 'json');
   });
 
-  it("collection", function() {
-    let opts = { collection: 'foo' };
+  it("query text", function() {
+    let opts = { qtext: 'foo' };
     let query = access.buildQuery(opts);
-    assert.isOk(query.whereClause.query.queries[0]['collection-query']);
-    assert.isNotOk(query.whereClause.query.queries[0]['term-query']);
+    assert.isOk(query.whereClause.query.queries[0]['term-query']);
   });
 
-  it("query text", function() {
-    let opts = { qtext: 'bar' };
+  it("collection", function() {
+    let opts = { collection: 'bar' };
     let query = access.buildQuery(opts);
-    assert.isNotOk(query.whereClause.query.queries[0]['collection-query']);
-    assert.isOk(query.whereClause.query.queries[0]['term-query']);
+    assert.isOk(query.whereClause.query.queries[0]['collection-query']);
+  });
+
+  it("facet", function() {
+    let opts = { facet: 'baz' };
+    let query = access.buildQuery(opts);
+    assert.isOk(query.calculateClause);
   });
 
   it("page start", function() {
