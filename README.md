@@ -10,9 +10,7 @@ REST API for accessing harmonized documents in MarkLogic Data Hub.
 
 ## Setup
 
-Install [MarkLogic Data Hub](https://github.com/marklogic/marklogic-data-hub) and harmonize some data.
-
-For example, run some flows from the [insurance example](https://github.com/marklogic/marklogic-data-hub/tree/master/examples/insurance) ingest and map customer data. This will create harmonized customer documents in your data hub.
+Install [MarkLogic Data Hub](https://github.com/marklogic/marklogic-data-hub) and harmonize some data. For example, run some flows from the [insurance example](https://github.com/marklogic/marklogic-data-hub/tree/master/examples/insurance) ingest and map customer data. This will create harmonized customer documents in your data hub.
 
 Install this project:
 
