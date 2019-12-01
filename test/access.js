@@ -27,6 +27,16 @@ describe("built query", function() {
     assert.isOk(query.whereClause.query.queries[0]['collection-query']);
   });
 
+  it("range", function() {
+    let opts = { range: {
+      name: "roo",
+      comparison: "<",
+      value: 999
+    } };
+    let query = access.buildQuery(opts);
+    assert.isOk(query.whereClause.query.queries[0]['range-query']);
+  });
+
   it("facet", function() {
     let opts = { facet: 'baz' };
     let query = access.buildQuery(opts);
@@ -61,7 +71,7 @@ describe("built bucketed facet", function() {
       buckets: [
         { name: '1st', comparison: '<', upper: 1 },
         { name: '2nd', comparison: '<', lower: 1, upper: 2 },
-        { name: '3rd', comparison: '<', lower: 2}
+        { name: '3rd', comparison: '<', lower: 2 }
       ]
     };
     let facet = access.buildBucketed(opts);

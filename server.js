@@ -32,6 +32,7 @@ app.post('/search', (req, res) => {
 	  qtext: req.body.qtext,
 	  collection: req.body.collection,
 	  facet: req.body.facet,
+	  range: req.body.range,
 	  pageStart: req.body.pageStart,
 	  pageLength: req.body.pageLength,
 	  category: req.body.category
