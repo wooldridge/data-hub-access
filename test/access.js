@@ -52,3 +52,21 @@ describe("built query", function() {
   });
 
 });
+
+describe("built bucketed facet", function() {
+
+  it("three buckets", function() {
+    let opts = { 
+      name: 'foo',
+      buckets: [
+        { name: '1st', comparison: '<', upper: 1 },
+        { name: '2nd', comparison: '<', lower: 1, upper: 2 },
+        { name: '3rd', comparison: '<', lower: 2}
+      ]
+    };
+    let facet = access.buildBucketed(opts);
+    assert.equal(facet.range.bucket.length, 3);
+  });
+
+
+});

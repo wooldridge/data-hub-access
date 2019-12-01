@@ -6,6 +6,7 @@ const config = require('./config');
 
 const app = express();
 app.use(cors());
+app.use(express.json())
 
 const db = marklogic.createDatabaseClient(config.client);
 
@@ -17,6 +18,23 @@ app.get('/search', (req, res) => {
 	  pageStart: req.query.pageStart,
 	  pageLength: req.query.pageLength,
 	  category: req.query.category
+	});
+	db.documents.query(query).result(response => {
+	    res.send(response);
+	  }, error => {
+	    console.log(JSON.stringify(error, null, 2));
+	  }
+	);
+})
+
+app.post('/search', (req, res) => {
+	let query = access.buildQuery({
+	  qtext: req.body.qtext,
+	  collection: req.body.collection,
+	  facet: req.body.facet,
+	  pageStart: req.body.pageStart,
+	  pageLength: req.body.pageLength,
+	  category: req.body.category
 	});
 	db.documents.query(query).result(response => {
 	    res.send(response);
